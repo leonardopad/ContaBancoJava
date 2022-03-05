@@ -1,31 +1,37 @@
 package com.github.leonardopad2;
 
+
+/**
+ * @author leonardo Padilha Fontana
+ */
 public class Conta {
-		
+
 		public String nomeUsuario;
 		public Double saldo;
 		public String numeroConta;
 		public String tipoConta;
 		public Integer operacoes;
 		
-		public Conta(String nomeUsuario, Double saldo, String numeroConta, String tipoConta ) {
+		public Conta(String nomeUsuario, Double saldo, String numeroConta, String tipoConta, Integer operacoes ) {
 			this.nomeUsuario = nomeUsuario;
 			this.saldo = saldo;
 			this.numeroConta = numeroConta;
 			this.tipoConta = tipoConta;
+			this.operacoes = operacoes;
 		}
 		
 		public Double depositar(Double valor) {
+			double ValorADepositar = valor;
 			if(tipoConta.equals("PF")) {
-				valor -= valor * 0.02;
+				ValorADepositar -= (valor * 0.02);
 			} else {
-				valor -= valor * 0.01;
+				ValorADepositar  -= valor * 0.01;
 			}
-			saldo = saldo + valor;
+			saldo = saldo + ValorADepositar;
 			imprimirSaldo();
-			return valor;
+			return ValorADepositar;
 		}
-		
+
 		public double sacar (Double valor) {
 			Double ValorASacar = valor;
 			if(ValorASacar > saldo && tipoConta == "PF"){
